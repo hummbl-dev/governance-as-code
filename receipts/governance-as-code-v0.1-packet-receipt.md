@@ -4,6 +4,7 @@
 
 - Repo: `governance-as-code`
 - Packet status: `seed -> v0.1-draft`
+- Packet folder: `.` (repository root)
 - Scope source: `governance-as-code #4`
 - PR target: `chore/codex/governance-as-code-v0-1-packet-main` (this change set)
 
@@ -31,4 +32,4 @@
 
 - Directory contract check: `docs/`, `schemas/`, `examples/`, `fixtures/valid/`, `fixtures/invalid/`, `receipts/`
 - Structural review against `docs/as-code/pr-checklist.md` and `hummbl-dev#70`
-- Negative fixture includes authority boundary violation, empty outcomes, empty receipt values, and invalid delay value cases.
+- Negative fixture includes manifest version floor, authority boundary violation, empty outcomes, empty approval receipt value, missing release receipt, and invalid delay value cases.
