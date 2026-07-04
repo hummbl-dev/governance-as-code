@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "v0.1",
+  "packetStatus": "validated-example",
+  "governanceManifest": {
+    "id": "governance-as-code/release-admission-v1",
+    "title": "Release admission gate",
+    "version": 1,
+    "scope": "change-management"
+  },
+  "authority": {
+    "owner": "governance-as-code",
+    "canActOnBehalfOf": ["engineering_owners"]
+  },
+  "gates": [
+    {
+      "id": "admission",
+      "name": "Final admission",
+      "requiresReceipt": true,
+      "outcomes": ["approve", "reject"]
+    }
+  ],
+  "reviewPolicy": {
+    "reviewRequired": true,
+    "approverRole": "governance-owner",
+    "maxReviewDelayHours": 48,
+    "requiresProposalReceipt": true
+  },
+  "exceptionPolicy": {
+    "enabled": false,
+    "requiresExceptionReceipt": false
+  },
+  "receiptRequirements": {
+    "proposal": "proposal-receipt.v0.1",
+    "review": "review-receipt.v0.1",
+    "approval": "approval-receipt.v0.1",
+    "exception": "exception-receipt.v0.1",
+    "release": "release-receipt.v0.1"
+  }
+}

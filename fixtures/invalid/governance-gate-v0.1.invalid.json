@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "v0.1",
+  "packetStatus": "validated-example",
+  "governanceManifest": {
+    "id": "governance-as-code/release-admission-v1",
+    "title": "Invalid admission gate",
+    "version": 0,
+    "scope": "change-management"
+  },
+  "authority": {
+    "owner": "governance-as-code",
+    "canActOnBehalfOf": []
+  },
+  "gates": [
+    {
+      "id": "admission",
+      "name": "Final admission",
+      "requiresReceipt": false,
+      "outcomes": []
+    }
+  ],
+  "reviewPolicy": {
+    "reviewRequired": true,
+    "approverRole": "self",
+    "maxReviewDelayHours": 0
+  },
+  "exceptionPolicy": {
+    "enabled": true,
+    "requiresExceptionReceipt": false
+  },
+  "receiptRequirements": {
+    "proposal": "proposal-receipt.v0.1",
+    "review": "review-receipt.v0.1",
+    "approval": "",
+    "exception": "exception-receipt.v0.1"
+  }
+}
