@@ -30,6 +30,7 @@
 - Schema: [`schemas/governance-as-code-v0.1.json`](schemas/governance-as-code-v0.1.json)
 - Example: [`examples/governance-gate-v0.1.example.json`](examples/governance-gate-v0.1.example.json)
 - Fixtures: [`fixtures/valid/governance-gate-v0.1.valid.json`](fixtures/valid/governance-gate-v0.1.valid.json), [`fixtures/invalid/governance-gate-v0.1.invalid.json`](fixtures/invalid/governance-gate-v0.1.invalid.json)
+- Receipt: [`receipts/governance-as-code-v0.1-packet-receipt.md`](receipts/governance-as-code-v0.1-packet-receipt.md)
 
 ## Status
 

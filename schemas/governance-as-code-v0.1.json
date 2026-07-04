@@ -143,22 +143,27 @@
     },
     "receiptRequirements": {
       "type": "object",
-      "required": ["proposal", "review", "approval", "exception"],
+      "required": ["proposal", "review", "approval", "exception", "release"],
       "properties": {
         "proposal": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "review": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "approval": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "exception": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "release": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         }
       },
       "additionalProperties": false

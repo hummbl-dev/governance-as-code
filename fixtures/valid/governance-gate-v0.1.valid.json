@@ -33,6 +33,7 @@
     "proposal": "proposal-receipt.v0.1",
     "review": "review-receipt.v0.1",
     "approval": "approval-receipt.v0.1",
-    "exception": "exception-receipt.v0.1"
+    "exception": "exception-receipt.v0.1",
+    "release": "release-receipt.v0.1"
   }
 }
