@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "v0.1",
+  "packetStatus": "v0.1-draft",
+  "governanceManifest": {
+    "id": "governance-as-code/change-admission-v1",
+    "title": "Public change admission gate",
+    "version": 1,
+    "scope": "review-and-release",
+    "description": "A starter packet for proposal review, approval, and release checks for public repository changes."
+  },
+  "authority": {
+    "owner": "governance-as-code",
+    "canActOnBehalfOf": [
+      "engineering_owners",
+      "platform_owners"
+    ]
+  },
+  "gates": [
+    {
+      "id": "proposal-review",
+      "name": "Proposal review gate",
+      "requiresReceipt": true,
+      "outcomes": ["approve", "request_change", "reject"],
+      "reviewers": ["reviewer", "ops-reviewer"]
+    },
+    {
+      "id": "approval",
+      "name": "Approval gate",
+      "requiresReceipt": true,
+      "outcomes": ["approve", "escalate", "reject"],
+      "escalationTriggers": [
+        "security-risk",
+        "policy-conflict"
+      ],
+      "reviewers": ["governance-owner"]
+    }
+  ],
+  "reviewPolicy": {
+    "reviewRequired": true,
+    "approverRole": "governance-owner",
+    "maxReviewDelayHours": 72,
+    "requiresProposalReceipt": true
+  },
+  "exceptionPolicy": {
+    "enabled": true,
+    "requiresExceptionReceipt": true,
+    "escalationTargets": ["director", "security-as-code"]
+  },
+  "receiptRequirements": {
+    "proposal": "proposal-receipt.v0.1",
+    "review": "review-receipt.v0.1",
+    "approval": "approval-receipt.v0.1",
+    "exception": "exception-receipt.v0.1",
+    "release": "release-receipt.v0.1"
+  },
+  "adjacentRepos": [
+    "agent-as-code",
+    "policy-as-code",
+    "security-as-code",
+    "observability-as-code"
+  ]
+}
