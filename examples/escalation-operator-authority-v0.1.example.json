@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "v0.1",
+  "packetStatus": "v0.1-draft",
+  "exampleType": "escalation-scenario",
+  "title": "Escalation to operator authority — production deployment approval",
+  "description": "A concrete example showing the escalation path when an agent encounters a governance decision that requires operator authority. Illustrates what the agent does, what the operator does, and the receipt trail.",
+  "scenario": {
+    "context": "An autonomous agent has prepared a production deployment for a public repository. The governance manifest requires operator approval for production releases.",
+    "trigger": "Agent completes pre-deployment checks and reaches the 'approval' gate, which requires 'governance-owner' role — a role the agent does not hold."
+  },
+  "agentActions": {
+    "detect": "Agent evaluates gate policy and identifies that 'approval' gate requires 'governance-owner' role.",
+    "pause": "Agent halts the deployment workflow. No production mutation occurs.",
+    "gather": "Agent collects context for the operator: change summary, test results, security scan results, and the specific gate that triggered escalation.",
+    "propose": "Agent posts a proposal receipt with all gathered context and a recommended action ('approve deployment').",
+    "notify": "Agent sends escalation notification to the operator via the configured escalation channel.",
+    "wait": "Agent enters a waiting state. It does not retry, bypass, or self-approve."
+  },
+  "operatorActions": {
+    "review": "Operator reviews the proposal receipt, test results, and security scan.",
+    "decide": "Operator issues an explicit decision: 'approve', 'request_change', or 'reject'.",
+    "receipt": "Operator's decision is recorded as an approval receipt (or rejection receipt) with operator identity and timestamp."
+  },
+  "agentActionsAfterDecision": {
+    "onApprove": "Agent proceeds with the deployment, recording a release receipt upon completion.",
+    "onRequestChange": "Agent implements the requested changes and re-enters the proposal phase.",
+    "onReject": "Agent halts the workflow, records a rejection receipt, and does not retry without a new proposal."
+  },
+  "receiptTrail": [
+    {
+      "step": 1,
+      "type": "proposal-receipt.v0.1",
+      "actor": "agent",
+      "content": "Deployment proposal with change summary, test results, and security scan"
+    },
+    {
+      "step": 2,
+      "type": "escalation-receipt.v0.1",
+      "actor": "agent",
+      "content": "Escalation notification to operator — gate 'approval' requires 'governance-owner' role"
+    },
+    {
+      "step": 3,
+      "type": "approval-receipt.v0.1",
+      "actor": "operator",
+      "content": "Operator decision: approve / request_change / reject, with identity and timestamp"
+    },
+    {
+      "step": 4,
+      "type": "release-receipt.v0.1",
+      "actor": "agent",
+      "content": "Release completion receipt (only if approved)"
+    }
+  ],
+  "boundaryNotes": {
+    "agentDoesNot": [
+      "Self-approve a gate that requires operator authority",
+      "Bypass the escalation channel",
+      "Retry after rejection without a new proposal",
+      "Modify the governance manifest to change gate requirements"
+    ],
+    "operatorDoesNot": [
+      "Delegate approval authority to the agent via ad-hoc instruction (requires manifest change)",
+      "Skip the receipt trail"
+    ]
+  },
+  "nonGoals": [
+    "This example does not introduce canon.",
+    "This example does not create new HUMMBL/BaseN terminology.",
+    "This example does not modify operator-authority surfaces."
+  ]
+}
